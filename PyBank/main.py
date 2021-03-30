@@ -3,13 +3,15 @@
 import os
 import csv
 
-bank_path = os.path.join('PyBank', 'Resources', 'Assignments_03-Python_PyBank_Resources_budget_data.csv')
+bank_path = os.path.join('GitHub', 'python-challenge', 'PyBank', 'Resources', 'Budget_data.csv')
+
+columns = []
+rows = []
 
 with open(bank_path) as csvfile:
 
     bank_reader = csv.reader(csvfile, delimiter=',')
-
-    bank_header = next(bank_reader)
+    columns = next(bank_reader)
 
     # Get number of months in dataset 
     
@@ -19,10 +21,13 @@ with open(bank_path) as csvfile:
 
     # Get net total amount of Profit/Losses
 
-        for row in months:
+    total = 0
+
+    for row in bank_reader:
+        rows.append(row)
         
-        profit_loss = float(row[1])
-        total += float(profit_loss)
+        profit_loss = int(row[1])
+        total += int(profit_loss)
         print(total)
 
 
