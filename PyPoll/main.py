@@ -40,13 +40,16 @@ for candidate, votes in candidates.items():
     # calculate percentage of votes for each candidate
     # ---> NEED TO GET CANDIDATE NAMES
     pct_vote = '{0:.2f}'.format((votes / total_votes * 100))
-    print(pct_vote)
+
+    # print candidates with their % votes and total vote counts
+    print(f"{candidate}: {pct_vote} ({votes})")
     
     # set condition for winner
     if votes > winner_votes:
        votes = winner_votes
        winner = candidate
-       print(winner)
+
+print(winner)
 
 # Print results
 
