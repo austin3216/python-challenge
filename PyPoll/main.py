@@ -13,6 +13,7 @@ csv_path = os.path.join('PyPoll/Resources/Election_data.csv')
 total_votes = 0
 winner_votes = 0
 candidates = {}
+winner = {}
 
 # Read csv file
 
@@ -34,32 +35,32 @@ with open(csv_path) as csvfile:
         # get number of times/rows candidate name repeated (votes)
         candidates[row[2]] = candidates.get(row[2], 0) + 1
 
+print("Election Results")
+print("--------------------------------------")
+print(f"Total Votes: {total_votes}")
+print("--------------------------------------")
+
 # Loop through repeated candidate data, isolate individual data
 for candidate, votes in candidates.items():    
 
     # calculate percentage of votes for each candidate
-    # ---> NEED TO GET CANDIDATE NAMES
     pct_vote = '{0:.2f}'.format((votes / total_votes * 100))
 
     # print candidates with their % votes and total vote counts
     print(f"{candidate}: {pct_vote} ({votes})")
     
-    # set condition for winner
-    if votes > winner_votes:
-       votes = winner_votes
-       winner = candidate
+    # ---> NOT WORKING set condition for winner
+    # if votes > winner_votes:
+       # votes = winner_votes
+       # winner = candidate
 
-print(winner)
+    if pct_vote == max(pct_vote):
+        winner = candidate
 
 # Print results
 
-#print("Election Results")
-#print("--------------------------------------")
-#print(f"Total Votes: {total_votes}")
-#print("--------------------------------------")
-# print(candidate list with percent and total votes) - do this in or outside of loop?
-#print("--------------------------------------")
-#print(f"Winner: {winner}")
-#print("--------------------------------------")
+print("--------------------------------------")
+print(f"Winner: {winner}")
+print("--------------------------------------")
 
 # sys.stdout = open('PollResults.txt', 'w')
