@@ -38,13 +38,15 @@ with open(csv_path) as csvfile:
 for candidate, votes in candidates.items():    
 
     # calculate percentage of votes for each candidate
+    # ---> NEED TO GET CANDIDATE NAMES
     pct_vote = '{0:.2f}'.format((votes / total_votes * 100))
     print(pct_vote)
     
-    # condition for winner
-    # if candidate votes > winner_votes:
-        # candidate votes = winner_votes
-        # winner = # candidate from list
+    # set condition for winner
+    if votes > winner_votes:
+       votes = winner_votes
+       winner = candidate
+       print(winner)
 
 # Print results
 
