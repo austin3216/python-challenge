@@ -2,7 +2,6 @@
 
 import os
 import csv
-import sys
 
 # Connect to csv file
 
@@ -13,7 +12,7 @@ csv_path = os.path.join('PyPoll/Resources/Election_data.csv')
 total_votes = 0
 winner_votes = 0
 candidates = {}
-winner = {}
+winner = ""
 
 # Read csv file
 
@@ -49,18 +48,18 @@ for candidate, votes in candidates.items():
     # print candidates with their % votes and total vote counts
     print(f"{candidate}: {pct_vote} ({votes})")
     
-    # ---> NOT WORKING set condition for winner
-    # if votes > winner_votes:
-       # votes = winner_votes
-       # winner = candidate
-
-    if pct_vote == max(pct_vote):
+    # set condition for winner
+    if votes > winner_votes:
+        
+        # I had this reversed (votes = winner_votes); credit Han-se (professor)
+        winner_votes = votes
         winner = candidate
-
-# Print results
 
 print("--------------------------------------")
 print(f"Winner: {winner}")
 print("--------------------------------------")
 
-# sys.stdout = open('PollResults.txt', 'w')
+# Print to text file - revised after reviewed with Han-se (professor)
+
+# with open ('Election Results', 'w') as txt_file:
+    # txt_file.write(results)
