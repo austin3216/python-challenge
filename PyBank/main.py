@@ -2,7 +2,6 @@
 
 import os
 import csv
-import sys
 
 # Connect to csv file
 
@@ -61,14 +60,14 @@ with open(bank_path) as csvfile:
 
 # Print final results
 
-results = (f" Total Months: {months_total} \n Total Profit/Loss: ${total_net} \n Average Change: ${avg_chg} \n Greatest Increase in Profits: {greatest_increase} \n Greatest Decrease in Profits: {greatest_decrease}")
+results = (f"Financial Analysis \n----------------------------------------------------------------- \n\
+Total Months: {months_total} \nTotal Profit/Loss: ${total_net} \n\
+Average Change: ${avg_chg} \nGreatest Increase in Profits: {greatest_increase} \n\
+Greatest Decrease in Profits: {greatest_decrease}")
 
-print("Financial Analysis")
-print("-----------------------------------------------------------------")
 print(results)
 
-sys.stdout = open('FinAnalysis.txt', 'w')
+#Print to text file - revised after reviewed with Han-se (professor)
 
-print("Financial Analysis")
-print("-----------------------------------------------------------------")
-print(results)
+with open ('Financial_Analysis', 'w') as txt_file:
+    txt_file.write(results)
