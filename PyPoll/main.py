@@ -5,7 +5,7 @@ import csv
 
 # Connect to csv file
 
-csv_path = os.path.join('PyPoll/Resources/Election_data.csv')
+csv_path = os.path.join('/Users/amber/Desktop/GitHub/python-challenge/PyPoll/Resources/Election_data.csv')
 
 # Create variables
 
@@ -34,10 +34,19 @@ with open(csv_path) as csvfile:
         # get number of times/rows candidate name repeated (votes)
         candidates[row[2]] = candidates.get(row[2], 0) + 1
 
-print("Election Results")
-print("--------------------------------------")
-print(f"Total Votes: {total_votes}")
-print("--------------------------------------")
+# Define the results for printing to terminal and text file
+
+results1 = (f"Election Results \n--------------------------------------\n\
+Total Votes: {total_votes} \n--------------------------------------\n")
+
+# terminal print
+
+print(results1)
+
+# text file creation and print
+
+with open('Election_Results', 'w') as txt_file:
+    txt_file.write(results1)
 
 # Loop through repeated candidate data, isolate individual data
 for candidate, votes in candidates.items():    
@@ -46,7 +55,14 @@ for candidate, votes in candidates.items():
     pct_vote = '{0:.2f}'.format((votes / total_votes * 100))
 
     # print candidates with their % votes and total vote counts
-    print(f"{candidate}: {pct_vote} ({votes})")
+    results2 = (f"{candidate}: {pct_vote} ({votes})\n")
+
+    print(results2)
+
+    # append results to text file
+
+    with open('Election_Results', 'a') as file_object:
+        file_object.write(results2)
     
     # set condition for winner
     if votes > winner_votes:
@@ -55,11 +71,12 @@ for candidate, votes in candidates.items():
         winner_votes = votes
         winner = candidate
 
-print("--------------------------------------")
-print(f"Winner: {winner}")
-print("--------------------------------------")
+results3 = (f"--------------------------------------\n\
+Winner: {winner}\n--------------------------------------")
 
-# Print to text file - revised after reviewed with Han-se (professor)
+print(results3)
 
-# with open ('Election Results', 'w') as txt_file:
-    # txt_file.write(results)
+# append results to text file
+
+with open('Election_Results', 'a') as file_object:
+        file_object.write(results3)
